@@ -68,3 +68,35 @@ We accomplish this with `SoftShadows` helper
 Don't animate the properties, don't allow user to change them, it's bad for performance
 
 #### accumulative shadows
+
+`AccumulativeShadows`
+
+can be rendered only on plane (we used our floor)
+
+since this is specail thing we must remove `receiveShadow` from floor mesh
+
+we set it before the lights
+
+we position it to be just little above the floor (0.1 above the floor (by `y`))
+
+And we need to add new light, and that light needs to be nested inside it, in our case directional light, and we will use position and castShadow, the properties which outr existing light already has
+
+So we have two lights, one nested and other outside, and both needs to be positioned with same values and both needs to have castShadow to true
+
+We will also use helper `RandomizedLight` and we will replace nested directional light with it
+
+And now tweak bunch of properties on randomized light
+
+leva will be usefull here because this is hard to set
+
+# Whith this we end up firt half of the lesson
+
+That is why we separated our Experience and App in two different folders
+
+## `ContactShadows`
+
+It only works without light, and only on a plane
+
+this one doesn't relly on default shadow system of Three.js
+
+We need to deactivate `shadows` on `<Canvas>`

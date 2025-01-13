@@ -19,7 +19,9 @@ import {
   // MeshReflectorMaterial,
   useHelper,
   BakeShadows,
-  SoftShadows,
+  // SoftShadows,
+  AccumulativeShadows,
+  RandomizedLight,
 } from "@react-three/drei";
 
 // import { CustomObject } from "./CustomObject";
@@ -32,16 +34,17 @@ export function Experience() {
 
   const directionalLightRef = useRef<DirectionalLight>(null);
   // const directionalLightHelperRef = useRef<DirectionalLightHelper>(null);
-  const dirLightHelperRef = useHelper(
+  /* useHelper(
     // @ts-expect-error todo find solution for this stupid errord=s
     directionalLightRef,
     DirectionalLightHelper,
     1,
-    "crimson"
-  );
+    "purple"
+  ); */
 
   useFrame((state, delta) => {
-    /* const elapsed: number = state.clock.getElapsedTime();
+    const elapsed: number = state.clock.getElapsedTime();
+    /* 
 
     state.camera.position.x = Math.sin(elapsed * 0.9) * 5;
     state.camera.position.z = Math.cos(elapsed * 0.9) * 5;
@@ -63,6 +66,10 @@ export function Experience() {
       <Perf position="top-left" />
 
       <OrbitControls makeDefault />
+
+      {/* ---------------------------------- */}
+      {/* ---------------------------------- */}
+
       <directionalLight
         castShadow
         ref={directionalLightRef}
@@ -81,15 +88,7 @@ export function Experience() {
         shadow-camera-bottom={-3}
         shadow-camera-left={-3}
       />
-      {/* don't need to do this because of we are using useHelper */}
-      {/* directionalLightRef.current && (
-        <directionalLightHelper
-          ref={directionalLightHelperRef}
-          args={[directionalLightRef.current, 1]}
-          color="blue"
-          visible={false}
-        />
-      ) */}
+
       <ambientLight intensity={0.6} />
       {/* CUBE */}
       <mesh position={[2, 0, 0]} ref={cubeRef} castShadow>
@@ -120,8 +119,8 @@ export function Experience() {
       {/* ---------------------------------------------------- */}
       {/* ---------------------------------------------------- */}
       {/* ---------------------------------------------------- */}
-      <BakeShadows />
-      <SoftShadows samples={17} focus={11} size={29} />
+      {/* <BakeShadows /> */}
+      {/* <SoftShadows samples={17} focus={11} size={29} /> */}
     </>
   );
 }

@@ -33,6 +33,11 @@ export function App() {
           // zoom: 100,
         }}
         // orthographic
+        // this doesn't work, use SoftShadow helper instead, same goes
+        // for accumulative
+        // shadows="soft"
+        // without this shadows won't be activated
+        shadows
       >
         <color args={["blanchedalmond"]} attach={"background"} />
         <Experience />

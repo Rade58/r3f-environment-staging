@@ -9,14 +9,18 @@ pnpm create vite
 - dependancies
 
 ```
-pnpm add three @react-three/fiber @react-three/drei
+pnpm add three @react-three/fiber @react-three/drei leva@0.9.34
 ```
 
 ```
 pnpm add -D r3f-perf @types/three
 ```
 
-# Things we did or we talked about
+# Leva @0.9.34 worked for me
+
+latest version has bug I think, unable to use joystick and color picker
+
+# What we did in this workshop
 
 ## Background color
 
@@ -89,14 +93,50 @@ And now tweak bunch of properties on randomized light
 
 leva will be usefull here because this is hard to set
 
-# Whith this we end up firt half of the lesson
+#### Whith this we end up firt half of the lesson
 
 That is why we separated our Experience and App in two different folders
 
-## `ContactShadows`
+### `ContactShadows`
 
 It only works without light, and only on a plane
 
 this one doesn't relly on default shadow system of Three.js
 
 We need to deactivate `shadows` on `<Canvas>`
+
+we will put it on the floor ant it will render from the floor
+
+nest it where ever you want
+
+cool thing to add to leva, are opacity, blur and color, so you can find perfect match for your scene
+
+We installed leva 0.9.0
+
+limitations:
+
+![csh](/notes/images/Screenshot%20from%202025-01-14%2004-46-25.png)
+
+# Sky
+
+I imported it from drei and nested it
+
+it tries to reproduce realistic sky
+
+we will just move sun position with leva
+
+play with the y, this will put sun up or down
+
+but what is better to do
+
+- create Spherica (<https://threejs.org/docs/index.html?q=Spherical#api/en/math/Spherical>)
+- create Vector3 (convert sperical to)
+- use method setFromSpherical (on Vector3)
+
+Also we can use same coordinates on directional light and for the sun position
+
+# We are starting with third par of the lesson here
+
+I wanted to separate environment map things in a separate lesson
+
+# Environment Map

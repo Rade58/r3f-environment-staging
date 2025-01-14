@@ -22,25 +22,50 @@ import {
   // SoftShadows,
   AccumulativeShadows,
   RandomizedLight,
+  ContactShadows,
+  Sky,
 } from "@react-three/drei";
 
 // import { CustomObject } from "./CustomObject";
 
 import { Perf } from "r3f-perf";
 
+import { useControls } from "leva";
+
 export function Experience() {
+  const contactShadowsControls = useControls({
+    blur: {
+      value: 2.2,
+      min: 0,
+      max: 10,
+    },
+    color: {
+      value: "#6236c2",
+    },
+    opacity: {
+      value: 0.51,
+      min: 0,
+      max: 1,
+    },
+  });
+
+  const skyControls = useControls({
+    sunPosition: {
+      value: [1, 2, 3],
+    },
+  });
+
   const cubeRef = useRef<Mesh>(null);
   const sphereRef = useRef<Mesh>(null);
 
   const directionalLightRef = useRef<DirectionalLight>(null);
-  // const directionalLightHelperRef = useRef<DirectionalLightHelper>(null);
-  /* useHelper(
+  useHelper(
     // @ts-expect-error todo find solution for this stupid errord=s
     directionalLightRef,
     DirectionalLightHelper,
     1,
     "purple"
-  ); */
+  );
 
   useFrame((state, delta) => {
     const elapsed: number = state.clock.getElapsedTime();
@@ -53,10 +78,6 @@ export function Experience() {
       // cubeRef.current.rotation.z = Math.PI * elapsed * 0.1;
       cubeRef.current.rotation.y += delta;
     }
-
-    /* if (directionalLightHelperRef.current) {
-      directionalLightHelperRef.current.update();
-    } */
   });
 
   console.log({ sphereRef });
@@ -68,6 +89,21 @@ export function Experience() {
       <OrbitControls makeDefault />
 
       {/* ---------------------------------- */}
+
+      <ContactShadows
+        position={[0, -0.99, 0]}
+        // opacity={1}
+        // blur={1}
+        // color="#000000"
+        scale={10}
+        far={5}
+        resolution={256}
+        frames={1} // this will bake the shadows
+        opacity={contactShadowsControls.opacity}
+        blur={contactShadowsControls.blur}
+        color={contactShadowsControls.color}
+      />
+
       {/* ---------------------------------- */}
 
       <directionalLight
@@ -75,10 +111,9 @@ export function Experience() {
         ref={directionalLightRef}
         // args={[0xffffff, 0.2]}
         // position-y={3}
-        position={[1, 2, 3]}
+        // position={[1, 2, 3]}
+        position={skyControls.sunPosition}
         intensity={1.5}
-        // when using array like this means we are calling set
-        // and we can usr - to access specific stuff on
         // shadow property
         shadow-mapSize={[1024, 1024]}
         shadow-camera-near={1}
@@ -90,6 +125,11 @@ export function Experience() {
       />
 
       <ambientLight intensity={0.6} />
+
+      {/* ---------------------------------- */}
+      <Sky sunPosition={skyControls.sunPosition} />
+      {/* ---------------------------------- */}
+
       {/* CUBE */}
       <mesh position={[2, 0, 0]} ref={cubeRef} castShadow>
         <boxGeometry args={[1, 1, 1]} />

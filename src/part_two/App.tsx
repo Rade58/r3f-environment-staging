@@ -8,12 +8,14 @@ import {
   // LinearSRGBColorSpace,
   // Color,
 } from "three";
+import { Leva } from "leva";
 
 // import { Perf } from "r3f-perf";
 
 export function App() {
   return (
     <>
+      <Leva />
       <Canvas
         // onCreated={created}
         // dpr={[1, 2]}
@@ -35,8 +37,10 @@ export function App() {
         }}
         // orthographic
         // we don't need this if we are using ContactShadows
-        shadows={false}
+        // shadows={false}
+        // shadows
       >
+        {/* <Leva /> */}
         <color args={["blanchedalmond"]} attach={"background"} />
         <Experience />
       </Canvas>

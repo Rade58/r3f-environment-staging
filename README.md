@@ -314,3 +314,31 @@ We also need to place out meshes at 0 elevation in our scene
 Also you can hide our floor mesh, and also move ContactShadow up to be at zero by y
 
 Finally we set to tweak these ground values
+
+---
+
+---
+
+Part 6
+
+---
+
+---
+
+# `Stage` helper
+
+Default good looking settings with minimal configuration
+
+Stage will set an environment map, shadows, two directional lights and center the scene
+
+We will comment everything out, we will just leave orbit controls, perf, we will remove all meshes but we will duplicate our sphere and cube
+
+we will have just black cube and sphere
+
+We will nest those meshes into Stage tag
+
+**Let's say you need to display some model to the client. Well you would do this with Stage**
+
+Check the Experience, I tweaked some values on Stage tage
+
+It looks cool

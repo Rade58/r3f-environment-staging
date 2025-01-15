@@ -285,7 +285,7 @@ Part 5
 
 You need to find environment map that has a flat in the middle. Anything with walls will look strange
 
-I used this one: <https://polyhaven.com/a/hochsal_field>
+I used this one: <https://polyhaven.com/a/lonely_road_afternoon>
 
 remove or comment resolution prop we set on Environment
 
@@ -305,6 +305,12 @@ For me only work with this values:
 ground={{ height: 5, radius: 40, scale: 20 }}
 ```
 
+I found these values in code sandbox: <https://codesandbox.io/p/sandbox/0c5hv9>
+
 It would be good to use leva for setting these values
 
 We also need to place out meshes at 0 elevation in our scene
+
+Also you can hide our floor mesh, and also move ContactShadow up to be at zero by y
+
+Finally we set to tweak these ground values

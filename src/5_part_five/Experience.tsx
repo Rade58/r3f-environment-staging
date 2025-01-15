@@ -46,7 +46,7 @@ export function Experience() {
       max: 10,
     },
     color: {
-      value: "#6236c2",
+      value: "#b42f75",
     },
     opacity: {
       value: 0.76,
@@ -61,6 +61,22 @@ export function Experience() {
       value: 3.5,
       min: 0,
       max: 12,
+    },
+    //
+    envMapHeight: {
+      value: 5,
+      min: 0,
+      max: 100,
+    },
+    envMapRadius: {
+      value: 40,
+      min: 10,
+      max: 1000,
+    },
+    envMapScale: {
+      value: 20,
+      min: 10,
+      max: 1000,
     },
   });
 
@@ -105,7 +121,13 @@ export function Experience() {
         //   radius: 58,
         //   scale: 1000,
         // }}
-        ground={{ height: 5, radius: 40, scale: 20 }}
+        // ground={{ height: 5, radius: 40, scale: 20 }}
+
+        ground={{
+          height: envMapControls.envMapHeight,
+          radius: envMapControls.envMapRadius,
+          scale: envMapControls.envMapScale,
+        }}
       />
 
       {/* ------------------------------------- */}
@@ -117,7 +139,8 @@ export function Experience() {
       {/* ---------------------------------- */}
 
       <ContactShadows
-        position={[0, -0.99, 0]}
+        // position={[0, -0.99, 0]}
+        position={[0, -0.8, 0]}
         // opacity={1}
         // blur={1}
         // color="#000000"

@@ -3,10 +3,11 @@ import { useFrame } from "@react-three/fiber";
 
 import {
   type Mesh,
-  type DirectionalLight,
+  // type DirectionalLight,
   // type Group,
-  DirectionalLightHelper,
-  Vector2,
+  // DirectionalLightHelper,
+  // Vector2,
+  type Texture,
 } from "three";
 
 import {
@@ -18,12 +19,14 @@ import {
   // Float,
   // MeshReflectorMaterial,
   useHelper,
-  BakeShadows,
+  // BakeShadows,
   // SoftShadows,
-  AccumulativeShadows,
-  RandomizedLight,
+  // AccumulativeShadows,
+  // RandomizedLight,
   ContactShadows,
-  Sky,
+  // Sky,
+  Environment,
+  useEnvironment,
 } from "@react-three/drei";
 
 import { Perf } from "r3f-perf";
@@ -31,7 +34,18 @@ import { Perf } from "r3f-perf";
 import { useControls } from "leva";
 
 export function Experience() {
-  const contactShadowsControls = useControls({
+  const mapTexture = useEnvironment({
+    files: [
+      "/textures/environment_maps/alley/px.png",
+      "/textures/environment_maps/alley/nx.png",
+      "/textures/environment_maps/alley/py.png",
+      "/textures/environment_maps/alley/ny.png",
+      "/textures/environment_maps/alley/pz.png",
+      "/textures/environment_maps/alley/nz.png",
+    ],
+  });
+
+  const contactShadowsControls = useControls("contact shadow", {
     blur: {
       value: 2.2,
       min: 0,
@@ -41,29 +55,31 @@ export function Experience() {
       value: "#6236c2",
     },
     opacity: {
-      value: 0.51,
+      value: 0.76,
       min: 0,
       max: 1,
     },
   });
 
-  const skyControls = useControls({
-    sunPosition: {
-      value: [1, 2, 3],
+  const envMapControls = useControls("env map", {
+    envMapIntesity: {
+      value: 1,
+      min: 0,
+      max: 12,
     },
   });
 
   const cubeRef = useRef<Mesh>(null);
   const sphereRef = useRef<Mesh>(null);
 
-  const directionalLightRef = useRef<DirectionalLight>(null);
+  /* const directionalLightRef = useRef<DirectionalLight>(null);
   useHelper(
     // @ts-expect-error todo find solution for this stupid errord=s
     directionalLightRef,
     DirectionalLightHelper,
     1,
     "purple"
-  );
+  ); */
 
   useFrame((state, delta) => {
     const elapsed: number = state.clock.getElapsedTime();
@@ -82,6 +98,20 @@ export function Experience() {
 
   return (
     <>
+      <Environment
+        map={mapTexture}
+        // since we already loaded texture
+        // we don't need to do it like this
+        /* files={[
+          "/textures/environment_maps/alley/px.png",
+          "/textures/environment_maps/alley/nx.png",
+          "/textures/environment_maps/alley/py.png",
+          "/textures/environment_maps/alley/ny.png",
+          "/textures/environment_maps/alley/pz.png",
+          "/textures/environment_maps/alley/nz.png",
+        ]} */
+        resolution={256}
+      />
       <Perf position="top-left" />
 
       <OrbitControls makeDefault />
@@ -104,34 +134,18 @@ export function Experience() {
 
       {/* ---------------------------------- */}
 
-      <directionalLight
-        castShadow
-        ref={directionalLightRef}
-        // args={[0xffffff, 0.2]}
-        // position-y={3}
-        // position={[1, 2, 3]}
-        position={skyControls.sunPosition}
-        intensity={1.5}
-        // shadow property
-        shadow-mapSize={[1024, 1024]}
-        shadow-camera-near={1}
-        shadow-camera-far={10}
-        shadow-camera-top={3}
-        shadow-camera-right={3}
-        shadow-camera-bottom={-3}
-        shadow-camera-left={-3}
-      />
-
-      <ambientLight intensity={0.6} />
-
       {/* ---------------------------------- */}
-      <Sky sunPosition={skyControls.sunPosition} />
       {/* ---------------------------------- */}
 
       {/* CUBE */}
       <mesh position={[2, 0, 0]} ref={cubeRef} castShadow>
         <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial wireframe={false} color="mediumpurple" />
+        <meshStandardMaterial
+          // wireframe
+          color="mediumpurple"
+          envMapIntensity={envMapControls.envMapIntesity}
+          envMap={mapTexture}
+        />
       </mesh>
       {/* SPHERE */}
       <mesh
@@ -142,7 +156,12 @@ export function Experience() {
         scale={0.8}
       >
         <sphereGeometry args={[1, 16, 16]} />
-        <meshStandardMaterial args={[{ color: "orange" }]} transparent />
+        <meshStandardMaterial
+          args={[{ color: "orange" }]}
+          // transparent
+          envMap={mapTexture}
+          envMapIntensity={envMapControls.envMapIntesity}
+        />
       </mesh>
       {/* FLOOR */}
       <mesh
@@ -152,7 +171,11 @@ export function Experience() {
         position-y={-1}
       >
         <planeGeometry />
-        <meshStandardMaterial args={[{ color: "greenyellow" }]} />
+        <meshStandardMaterial
+          args={[{ color: "greenyellow" }]}
+          envMapIntensity={envMapControls.envMapIntesity}
+          envMap={mapTexture}
+        />
       </mesh>
       {/* ---------------------------------------------------- */}
       {/* ---------------------------------------------------- */}

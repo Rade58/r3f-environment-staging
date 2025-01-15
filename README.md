@@ -140,3 +140,29 @@ Also we can use same coordinates on directional light and for the sun position
 I wanted to separate environment map things in a separate lesson
 
 # Environment Map
+
+- remove Sky, and all lights for this lesson
+
+we kept ContactShadows
+
+We are using `Environment` helper
+
+we are starting with cube texture, after that we will switch to hdri
+
+env map will be responsible for light
+
+### I think we have a problem
+
+envMap needs to be set on every material of our meshes
+
+there is a hook `useEnvironment`
+
+so we are going to use useEnvironment (we are loading texture with help of this hook)
+
+### Env map Intensity
+
+set `envMapIntensity` to 1
+
+we set this with leva also
+
+we do it for the each material of each mesh we have

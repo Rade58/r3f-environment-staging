@@ -24,8 +24,6 @@ import {
   RandomizedLight,
 } from "@react-three/drei";
 
-// import { CustomObject } from "./CustomObject";
-
 import { Perf } from "r3f-perf";
 
 export function Experience() {

@@ -166,3 +166,7 @@ set `envMapIntensity` to 1
 we set this with leva also
 
 we do it for the each material of each mesh we have
+
+### We will also test some HDRI textur of the sky
+
+I downloaded it from here: <https://polyhaven.com/a/the_sky_is_on_fire>

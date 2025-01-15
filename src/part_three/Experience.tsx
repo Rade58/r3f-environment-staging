@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 
 import {
   type Mesh,
@@ -35,14 +35,15 @@ import { useControls } from "leva";
 
 export function Experience() {
   const mapTexture = useEnvironment({
-    files: [
-      "/textures/environment_maps/alley/px.png",
-      "/textures/environment_maps/alley/nx.png",
-      "/textures/environment_maps/alley/py.png",
-      "/textures/environment_maps/alley/ny.png",
-      "/textures/environment_maps/alley/pz.png",
-      "/textures/environment_maps/alley/nz.png",
-    ],
+    /*  files: [
+      "/textures/environment_maps/bethnal_green_entrance/px.png",
+      "/textures/environment_maps/bethnal_green_entrance/nx.png",
+      "/textures/environment_maps/bethnal_green_entrance/py.png",
+      "/textures/environment_maps/bethnal_green_entrance/ny.png",
+      "/textures/environment_maps/bethnal_green_entrance/pz.png",
+      "/textures/environment_maps/bethnal_green_entrance/nz.png",
+    ], */
+    files: "/textures/environment_maps/the_sky_is_on_fire_2k.hdr",
   });
 
   const contactShadowsControls = useControls("contact shadow", {
@@ -63,7 +64,8 @@ export function Experience() {
 
   const envMapControls = useControls("env map", {
     envMapIntesity: {
-      value: 1,
+      // value: 1,
+      value: 3.5,
       min: 0,
       max: 12,
     },
@@ -102,15 +104,16 @@ export function Experience() {
         map={mapTexture}
         // since we already loaded texture
         // we don't need to do it like this
-        /* files={[
-          "/textures/environment_maps/alley/px.png",
-          "/textures/environment_maps/alley/nx.png",
-          "/textures/environment_maps/alley/py.png",
-          "/textures/environment_maps/alley/ny.png",
-          "/textures/environment_maps/alley/pz.png",
-          "/textures/environment_maps/alley/nz.png",
-        ]} */
-        resolution={256}
+        // files={[
+        // "/textures/environment_maps/bethnal_green_entrance/px.png",
+        // "/textures/environment_maps/bethnal_green_entrance/nx.png",
+        // "/textures/environment_maps/bethnal_green_entrance/py.png",
+        // "/textures/environment_maps/bethnal_green_entrance/ny.png",
+        // "/textures/environment_maps/bethnal_green_entrance/pz.png",
+        // "/textures/environment_maps/bethnal_green_entrance/nz.png",
+        // ]}
+        background
+        resolution={2048}
       />
       <Perf position="top-left" />
 

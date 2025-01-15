@@ -20,7 +20,15 @@ pnpm add -D r3f-perf @types/three
 
 latest version has bug I think, unable to use joystick and color picker
 
-# What we did in this workshop
+---
+
+---
+
+# Part one
+
+---
+
+---
 
 ## Background color
 
@@ -93,7 +101,15 @@ And now tweak bunch of properties on randomized light
 
 leva will be usefull here because this is hard to set
 
-#### Whith this we end up firt half of the lesson
+---
+
+---
+
+# Part two
+
+---
+
+---
 
 That is why we separated our Experience and App in two different folders
 
@@ -135,7 +151,15 @@ but what is better to do
 
 Also we can use same coordinates on directional light and for the sun position
 
-# We are starting with third par of the lesson here
+---
+
+---
+
+# Part three
+
+---
+
+---
 
 I wanted to separate environment map things in a separate lesson
 
@@ -182,3 +206,19 @@ for example you can use `preset="sunset"`
 You don't need to download any files by yourself. Just use presets
 
 **We pick same preset for useEnvironment hook and for Environment element**
+
+---
+
+---
+
+# Part 4
+
+---
+
+---
+
+# Custom environment
+
+Tweaking a little
+
+We want to add red rectangle on the side to ensure there's a red light luminating to our objects from the side

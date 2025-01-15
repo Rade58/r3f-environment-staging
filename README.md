@@ -342,3 +342,17 @@ We will nest those meshes into Stage tag
 Check the Experience, I tweaked some values on Stage tage
 
 It looks cool
+
+---
+
+---
+
+todo:
+
+# Check the `Staging` section of drei docs
+
+## Staging
+
+Staging section of drei documentation, starting from this one:
+
+<https://drei.docs.pmnd.rs/staging/accumulative-shadows>

@@ -217,8 +217,94 @@ You don't need to download any files by yourself. Just use presets
 
 ---
 
-# Custom environment
+# Custom environment (we are using our own mesh as a map)
 
 Tweaking a little
 
 We want to add red rectangle on the side to ensure there's a red light luminating to our objects from the side
+
+**We nest the new mesh inside the Environment tag, and now it will be part of the map**
+
+Idea is that red rectangle emmits light on your mesh and that it looks redish because of that
+
+**But there is a problem** since we set map property on all of our meshes, you won't see the red light so remove the `map`, maybe from the cube, after you did this you'll see that as one side of the box will be redish, the side that is pointing to the red plane
+
+Problem is now that you can't set the envMapIntensity on the box (Didn't find solution for this)
+
+You can remove preset prop (from your Environment element) and you will see increased redish tone on all of your meshes for whoom you didn't set `map`, which is just a cube
+
+## color tag nested in the `Environment`
+
+this will change background property of the scene, so you must use `attach="background"`
+
+now on the side of the scene that is accross red plane will be in the color you provided and red plaane will emmit red so you will have interesting effect
+
+also we will set color on the plane nested in Environment and we will use vector for that: array with three numbers
+
+set red to 10, you will see like more elumination on your meshes that caome from the plane
+
+### Using `Lightformer`
+
+Comment out mesh that is inside Environment tag, keep color tag
+
+now there is no light in the scene, not any preset env map or other env map, we just kept env map on the plane for no special reasons
+
+and we are going to nest Lightformer inside Environment
+
+play with the props, geometry can be ring, can be rect, circle, set color, intesity and other things
+
+It will look better if you would use scene with a reflection
+
+Here is the example: <https://codesandbox.io/p/sandbox/lwo219> (but I don't think it's working)
+
+You can try putting preset back now and try it how it looks
+
+**Looks very nice**
+
+### We can lower the resolution for performances sake, especially when you don't need to see background
+
+and haide background, maybe we can set resolution to 32
+
+it looks cool, yes you see large rectangles but it looks great
+
+you can hide background
+
+Yes, it looks good
+
+---
+
+---
+
+Part 5
+
+---
+
+---
+
+# `ground` prop of Environment
+
+You need to find environment map that has a flat in the middle. Anything with walls will look strange
+
+I used this one: <https://polyhaven.com/a/hochsal_field>
+
+remove or comment resolution prop we set on Environment
+
+comment out Lightformer nested in Environment
+
+This feature is very cool
+
+When we use envMap as background, image is infinitely far, and we have a feeling like our objects are floating
+
+By adding a `ground` attribute, the projection of the environment map will make it look as if the floor underneath the objects is near
+
+**There is a problem and I think it is a three version problem or r3f version problem,. You need to input specific values in order this to work**
+
+For me only work with this values:
+
+```tsx
+ground={{ height: 5, radius: 40, scale: 20 }}
+```
+
+It would be good to use leva for setting these values
+
+We also need to place out meshes at 0 elevation in our scene

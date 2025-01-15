@@ -170,3 +170,15 @@ we do it for the each material of each mesh we have
 ### We will also test some HDRI textur of the sky
 
 I downloaded it from here: <https://polyhaven.com/a/the_sky_is_on_fire>
+
+**In your rel world projects try to download as low resolution as possible, in case if you are not planing to use it as background, when you just want lighting settings that env map brings, and not the actual image**
+
+### Environment component also has presets
+
+drei creates presets. Files are taken directly from Poly Heaven
+
+for example you can use `preset="sunset"`
+
+You don't need to download any files by yourself. Just use presets
+
+**We pick same preset for useEnvironment hook and for Environment element**

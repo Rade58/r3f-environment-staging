@@ -35,15 +35,16 @@ import { useControls } from "leva";
 
 export function Experience() {
   const mapTexture = useEnvironment({
-    /*  files: [
-      "/textures/environment_maps/bethnal_green_entrance/px.png",
-      "/textures/environment_maps/bethnal_green_entrance/nx.png",
-      "/textures/environment_maps/bethnal_green_entrance/py.png",
-      "/textures/environment_maps/bethnal_green_entrance/ny.png",
-      "/textures/environment_maps/bethnal_green_entrance/pz.png",
-      "/textures/environment_maps/bethnal_green_entrance/nz.png",
-    ], */
-    files: "/textures/environment_maps/the_sky_is_on_fire_2k.hdr",
+    //  files: [
+    // "/textures/environment_maps/bethnal_green_entrance/px.png",
+    // "/textures/environment_maps/bethnal_green_entrance/nx.png",
+    // "/textures/environment_maps/bethnal_green_entrance/py.png",
+    // "/textures/environment_maps/bethnal_green_entrance/ny.png",
+    // "/textures/environment_maps/bethnal_green_entrance/pz.png",
+    // "/textures/environment_maps/bethnal_green_entrance/nz.png",
+    // ],
+    // files: "/textures/environment_maps/the_sky_is_on_fire_2k.hdr",
+    preset: "sunset",
   });
 
   const contactShadowsControls = useControls("contact shadow", {
@@ -101,7 +102,7 @@ export function Experience() {
   return (
     <>
       <Environment
-        map={mapTexture}
+        // map={mapTexture}
         // since we already loaded texture
         // we don't need to do it like this
         // files={[
@@ -114,6 +115,7 @@ export function Experience() {
         // ]}
         background
         resolution={2048}
+        preset="sunset"
       />
       <Perf position="top-left" />
 
